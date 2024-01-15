@@ -38,7 +38,7 @@ const filterHandler = (array: Array<Beer>, selectType:string, ) => {
          : b.brewery_type.localeCompare(a.brewery_type);
      }
    });
-   console.log("sorted is ", sorted);
+  //  console.log("sorted is ", sorted);
    // setBeerList(sorted);
    //setSortField(field);
    return sorted;
