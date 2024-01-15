@@ -72,43 +72,6 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
     return;
  } 
  
- 
-  // const removeOneSavedBeer = (id: number) => {
-  //   if (savedList.includes(savedList[id])){
-  //   setSavedList(savedList.filter((item) => item.id!== savedList[id].id));
-  //   setCheckedBeers(false);
-  //   console.log("status",checkedBeers);
-  // }
-  //   return;
-  // }
-  
-
-
-
-
-
-//  const handleReloadBeers = () => {
-//   if(checkedBeers === false && savedList.length > 0) {
-//     setCheckedBeers(true);
-//     console.log("I'm here");
-//   }
-//  }
-
-
-// const handleChange = (event: React.ChangeEvent<HTMLInputElement>)=> {
-//   setCheckedBeers(event.target.checked);
-// }
-
-// const handleselectedBeers = (event: React.ChangeEvent<HTMLInputElement>) => {
-//   const savedBeerIndex = savedList.findIndex(beer => beer.id === event.target.value);
-//   if (savedBeerIndex > -1) {
-//     setSavedList(savedList.filter((beer) => beer.id!== event.target.value));
-//   } else {
-//     setSavedList([...savedList, beerList[savedBeerIndex]]);
-//   }
-
-// }
- 
 
   return (
     <article>
