@@ -5,7 +5,8 @@
 .listContainer {
   padding: 20px;
   margin-bottom: 20px;
-  background: #fff;
+  background: #DCF2F1;
+  color: #ffff;
 }
 
 .listHeader {
@@ -25,3 +26,12 @@
   align-items: center;
   justify-content: center;
 }
+.search {
+  outline: none;
+  padding: 20px 7%;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 5%;
+  background: rgba(250, 250, 250, 0.85);
+}
+
