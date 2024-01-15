@@ -76,7 +76,7 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
   return (
     <article>
       <section>
-        <main>
+        <main className='beer'>
           <Paper>
             <div className={styles.listContainer}>
               <div className={styles.listHeader}>
@@ -87,6 +87,7 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
                     value={selectedBreweryType}
                     onChange={handleFilter}
                     fullWidth
+                    className={styles.search}
                   ></TextField>
                 </div>
 
@@ -127,6 +128,7 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
                     count={paginatedBeerList.length}
                     page={currentPage}
                     onChange={PaginationHandler}
+                    
                   />
                 </Box>
               )}
