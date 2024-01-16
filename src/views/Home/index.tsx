@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchData, paginate,  filterHandler, handleSort } from './utils';
-import { Beer, SORT, SORT_TYPE  } from '../../types';
+import { Beer, SORT, SORT_TYPE } from '../../types';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Checkbox, Paper, TextField, Link, Pagination, Box  } from '@mui/material';
 import styles from './Home.module.css';
@@ -8,7 +8,7 @@ import styles from './Home.module.css';
 const Home = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
   const [savedList, setSavedList] = useState<Array<Beer>>([]);
-  const [checkedBeers, setCheckedBeers] = useState(Array(beerList.length).fill(false));
+  const [checkedBeers, setCheckedBeers] = useState(Array(5).fill(false));
   const [selectedBreweryType, setSelectedBreweryType] = useState<string>("");
   
   //sorting
@@ -33,7 +33,7 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
 
 
   function handleFilter(event: React.ChangeEvent<HTMLInputElement>) {
-    setSelectedBreweryType(event.target.value as string);
+    setSelectedBreweryType(event.target.value);
     setCurrentPage(1);
   }
 
@@ -55,23 +55,23 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
   function PaginationHandler(e:Object, newPage: number) {
    setCurrentPage(newPage);
   }
-   const handleCheckboxChange = (id: number)=> (event?: any) => {
-    const newCheckboxStates = [...checkedBeers];
-    newCheckboxStates[id] = event.target.checked;
-    setCheckedBeers(newCheckboxStates);
-    
-   
-  };
 
- const handleSavedBeers = (id: number) => {
-  if (savedList.includes(beerList[id])) {
-      setSavedList(savedList.filter((item) => item.id!== beerList[id].id));
-    } else {
-      setSavedList([...savedList, beerList[id]]);
-    }
-    return;
- } 
+
+  const handleSavedBeers = (index: number, name: string)  => {
+     
+    // Check if the beer is already in the savedList
+    const beerAlreadyExists = savedList.some((item) => item.id === currentBeerList[index].id);
+  
+    // If the beer already exists, remove it; otherwise, add it
+ (!beerAlreadyExists && currentBeerList[index].name === name)?
+        setSavedList([...savedList, currentBeerList[index]]):
+        setSavedList(savedList.filter((item) => item.id!== currentBeerList[index].id));
+        // setCheckedBeers(savedList.map((item) => item.id === currentBeerList[index].id));
+      }
+   
  
+
+  
 
   return (
     <article>
@@ -115,7 +115,7 @@ const currentBeerList = paginatedBeerList[currentPage - 1];
                   currentBeerList.map((beer, index) => (
                     <li key={index.toString()}>
                     <Checkbox key={index} checked={checkedBeers[index]}
-                      onChange={handleCheckboxChange(index)} onClick={()=>handleSavedBeers(index)} />
+                      onClick={()=>handleSavedBeers(index, currentBeerList[index].name )} />
                     <Link component={RouterLink} to={`/beer/${beer.id}`}>
                       {beer.name}
                     </Link>
