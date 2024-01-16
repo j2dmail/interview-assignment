@@ -8,7 +8,7 @@ import styles from './Home.module.css';
 const Home = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
   const [savedList, setSavedList] = useState<Array<Beer>>([]);
-  const [checkedBeers, setCheckedBeers] = useState(Array(5).fill(false));
+  
   const [selectedBreweryType, setSelectedBreweryType] = useState<string>("");
   
   //sorting
@@ -30,6 +30,8 @@ const sortedList = handleSort(filteredBeer, sortField, sortOrder);
 const itemsPerPage = 5 as number;
 const paginatedBeerList = paginate(sortedList, itemsPerPage); 
 const currentBeerList = paginatedBeerList[currentPage - 1];
+
+const [checkedBeers, setCheckedBeers] = useState(Array(currentBeerList.length).fill(false));
 
 
   function handleFilter(event: React.ChangeEvent<HTMLInputElement>) {
